@@ -1,3 +1,4 @@
+/* eslint-disable */
 var webpack = require('webpack'),
     path = require('path');
 
@@ -7,6 +8,14 @@ module.exports = {
     'webpack-hot-middleware/client',
     './main.jsx'
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    fallback: [path.join(__dirname, '../node_modules')],
+    alias: {
+      'src': path.resolve(__dirname, '../src'),
+      'components': path.resolve(__dirname, '../src/components')
+    }
+  },
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',

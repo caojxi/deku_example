@@ -1,13 +1,13 @@
-import {element} from 'deku';
-import Button from './components/Button.jsx';
+import { element } from 'deku'
+import Button from './components/Button.jsx'
 
 export default {
-  render() {
+  render () {
     return (
       <div>
         <p>Hello World!</p>
         <Button />
       </div>
-    );
+    )
   }
 }

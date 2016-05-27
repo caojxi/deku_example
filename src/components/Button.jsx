@@ -1,4 +1,4 @@
-import { element } from 'deku';
+import { element } from 'deku'
 
 const people = [
   { id: 1, name: 'Tom' },
@@ -8,11 +8,15 @@ const people = [
 
 const el = (
   <ul>
-    { people.map(person => <li key={ person.id }>{person.name}</li>) }
+    { people.map(person => <li key={ person.id } onClick={click}>{person.name}</li>) }
   </ul>
 )
 
-function render() {
+function click (e) {
+  console.log(e)
+}
+
+function render () {
   return (
     <div>
       { el }
@@ -20,11 +24,11 @@ function render() {
   )
 }
 
-function onCreate(model) {
-  console.log(model);
+function onCreate (model) {
+  console.log(model)
 }
 
 export default {
   render,
-  onCreate,
+  onCreate
 }
