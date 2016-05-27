@@ -4,7 +4,8 @@
     "watch": "webpack --progress --color --watch"
   },
   "dependencies": {
-    "deku": "^2.0.0-rc16"
+    "deku": "^2.0.0-rc16",
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.9.0",
