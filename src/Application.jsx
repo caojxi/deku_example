@@ -1,13 +1,30 @@
 import { element } from 'deku'
-import Button from './components/Button.jsx'
+
+function addTodo (dispatch, text) {
+  return event => {
+    dispatch({
+      text,
+      type: 'ADD_TODO'
+    })
+  }
+}
+
+function render ({ dispatch, context }) {
+  return (
+    <div>
+      <button onClick={addTodo(dispatch, 'test')}>Add Todo</button>
+      <ul>
+        {context.todos.map(todo => <li>{todo.text}</li>)}
+      </ul>
+    </div>
+  )
+}
+
+function onCreate (model) {
+  console.log(model)
+}
 
 export default {
-  render () {
-    return (
-      <div>
-        <p>Hello World!</p>
-        <Button />
-      </div>
-    )
-  }
+  render,
+  onCreate
 }

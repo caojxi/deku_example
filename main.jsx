@@ -1,11 +1,15 @@
 import { createApp, element } from 'deku'
 import Application from './src/Application.jsx'
+import { createStore } from 'redux'
+import reducer from './src/redux/reducers.js'
 
-const render = createApp(document.getElementById('mount'))
+const store = createStore(reducer)
+
+const render = createApp(document.getElementById('mount'), store.dispatch)
 
 // Rendering function
 function update (Component) {
-  render(<Component />)
+  render(<Component />, store.getState())
 }
 
 // First render
