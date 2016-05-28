@@ -20,11 +20,6 @@ function render ({ dispatch, context }) {
   )
 }
 
-function onCreate (model) {
-  console.log(model)
-}
-
 export default {
-  render,
-  onCreate
+  render
 }
