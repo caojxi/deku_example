@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 import reducers from './src/redux/reducers.js'
 import Application from './src/Application.jsx'
 
-const store = createStore(reducers)
+const store = createStore(reducers, {}, window.devToolsExtension && window.devToolsExtension())
 
 const render = createApp(document.getElementById('app'), store.dispatch)
 
