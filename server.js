@@ -1,3 +1,4 @@
+/* eslint-disable */
 var webpack = require('webpack'),
     config = require('./webpack.config.js'),
     dev = require('webpack-dev-middleware'),

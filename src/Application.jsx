@@ -2,10 +2,14 @@ import { element } from 'deku'
 
 function addTodo (dispatch, id) {
   return event => {
-    dispatch({
-      text: document.getElementById(id).value,
-      type: 'ADD_TODO'
-    })
+    const text = document.getElementById(id).value
+
+    if (text) {
+      dispatch({
+        text,
+        type: 'ADD_TODO'
+      })
+    }
   }
 }
 
@@ -16,7 +20,7 @@ export default {
         <input id={path} type={'text'} />
         <button onClick={addTodo(dispatch, path)}>Add Todo</button>
         <ul>
-          {context.todos.map(todo => <li>{todo.text}</li>)}
+          {context.todos.map(todo => <li>{todo.text} <button>Complete</button></li>)}
         </ul>
       </div>
     )

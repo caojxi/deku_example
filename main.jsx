@@ -1,9 +1,6 @@
 import { createApp, element } from 'deku'
-import { createStore } from 'redux'
-import reducers from './src/redux/reducers.js'
+import store from './src/redux/store'
 import Application from './src/Application.jsx'
-
-const store = createStore(reducers, {}, window.devToolsExtension && window.devToolsExtension())
 
 const render = createApp(document.getElementById('app'), store.dispatch)
 
