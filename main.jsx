@@ -14,3 +14,12 @@ store.subscribe(() => update(Application, store.getState()))
 
 // First render
 update(Application, store.getState())
+
+// Hooking into HMR
+// This is the important part as it will reload your code and re-render the app accordingly
+if (module.hot) {
+  module.hot.accept('./src/Application.jsx', function () {
+    const nextApplication = require('./src/Application.jsx').default
+    update(nextApplication, store.getState())
+  })
+}
