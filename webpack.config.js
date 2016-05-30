@@ -14,6 +14,7 @@ module.exports = {
     fallback: [path.join(__dirname, './node_modules')],
     alias: {
       'src': path.resolve(__dirname, './src'),
+      'rd': path.resolve(__dirname, './src/redux'),
       'components': path.resolve(__dirname, './src/components')
     }
   },

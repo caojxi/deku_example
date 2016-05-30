@@ -1,14 +1,12 @@
 import { element } from 'deku'
+import { addTodo } from 'rd/actions'
 
-function addTodo (dispatch, id) {
+function onAdd (dispatch, id) {
   return event => {
     const text = document.getElementById(id).value
 
     if (text) {
-      dispatch({
-        text,
-        type: 'ADD_TODO'
-      })
+      dispatch(addTodo(text))
     }
   }
 }
@@ -18,7 +16,7 @@ export default {
     return (
       <div>
         <input id={path} type={'text'} />
-        <button onClick={addTodo(dispatch, path)}>Add Todo</button>
+        <button onClick={onAdd(dispatch, path)}>Add Todo</button>
         <ul>
           {context.todos.map(todo => <li><button>Complete</button> {todo.text}</li>)}
         </ul>
