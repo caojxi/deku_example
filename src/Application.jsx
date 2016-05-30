@@ -11,6 +11,9 @@ function onAdd (dispatch, id) {
   }
 }
 
+function onToggle () {
+}
+
 export default {
   render ({ dispatch, context, path }) {
     return (
@@ -18,7 +21,11 @@ export default {
         <input id={path} type={'text'} />
         <button onClick={onAdd(dispatch, path)}>Add Todo</button>
         <ul>
-          {context.todos.map(todo => <li><button>Complete</button> {todo.text}</li>)}
+          {context.todos.map(todo =>
+          <li class={ todo.completed ? 'completed' : 'uncompleted' }>
+            <button onClick={onToggle(dispatch)}>Complete</button> {todo.text}
+          </li>
+          )}
         </ul>
       </div>
     )
