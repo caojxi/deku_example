@@ -1,29 +1,32 @@
 import { element } from 'deku'
-import { addTodo } from 'rd/actions'
+import { addTodo, toggleTodo } from 'rd/actions'
 
 function onAdd (dispatch, id) {
   return event => {
     const text = document.getElementById(id).value
 
     if (text) {
-      dispatch(addTodo(text))
+      dispatch(addTodo(text, `${Date.now()}${Math.random().toString()}`))
     }
   }
 }
 
-function onToggle () {
+function onToggle (dispatch, id) {
+  return event => {
+    dispatch(toggleTodo(id))
+  }
 }
 
 export default {
-  render ({ dispatch, context, path }) {
+  render ({ dispatch, path, context: { todos, visibilityFilter } }) {
     return (
       <div>
-        <input id={path} type={'text'} />
+        <input id={path} type='text' />
         <button onClick={onAdd(dispatch, path)}>Add Todo</button>
         <ul>
-          {context.todos.map(todo =>
+          {todos.map(todo =>
           <li class={ todo.completed ? 'completed' : 'uncompleted' }>
-            <button onClick={onToggle(dispatch)}>Complete</button> {todo.text}
+            <button onClick={onToggle(dispatch, todo.id)}>Complete</button> {todo.text}
           </li>
           )}
         </ul>

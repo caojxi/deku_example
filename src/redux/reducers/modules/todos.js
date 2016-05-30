@@ -7,18 +7,21 @@ function todos (state = [], action) {
         ...state,
         {
           text: action.text,
+          id: action.id,
           completed: false
         }
       ]
+
     case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
+      return state.map(todo => {
+        if (todo.id === action.id) {
           return Object.assign({}, todo, {
             completed: !todo.completed
           })
         }
         return todo
       })
+
     default:
       return state
   }
