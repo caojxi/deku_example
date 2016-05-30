@@ -20,7 +20,7 @@ export default {
         <input id={path} type={'text'} />
         <button onClick={addTodo(dispatch, path)}>Add Todo</button>
         <ul>
-          {context.todos.map(todo => <li>{todo.text} <button>Complete</button></li>)}
+          {context.todos.map(todo => <li><button>Complete</button> {todo.text}</li>)}
         </ul>
       </div>
     )
