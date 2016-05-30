@@ -1,5 +1,24 @@
 import { element } from 'deku'
 import { addTodo, toggleTodo } from 'rd/actions'
+import { css } from 'utils/index'
+
+export default {
+  render ({ dispatch, path, context: { todos, visibilityFilter } }) {
+    return (
+      <div>
+        <input id={path} type='text' />
+        <button onClick={onAdd(dispatch, path)}>Add Todo</button>
+        <ul>
+          {todos.map(todo =>
+          <li style={todo.completed ? completed : ''}>
+            <button onClick={onToggle(dispatch, todo.id)}>{!todo.completed ? 'Complete' : 'Uncomplete'}</button> {todo.text}
+          </li>
+          )}
+        </ul>
+      </div>
+    )
+  }
+}
 
 function onAdd (dispatch, id) {
   return event => {
@@ -17,20 +36,8 @@ function onToggle (dispatch, id) {
   }
 }
 
-export default {
-  render ({ dispatch, path, context: { todos, visibilityFilter } }) {
-    return (
-      <div>
-        <input id={path} type='text' />
-        <button onClick={onAdd(dispatch, path)}>Add Todo</button>
-        <ul>
-          {todos.map(todo =>
-          <li class={ todo.completed ? 'completed' : 'uncompleted' }>
-            <button onClick={onToggle(dispatch, todo.id)}>Complete</button> {todo.text}
-          </li>
-          )}
-        </ul>
-      </div>
-    )
-  }
-}
+const completed = css({
+  color: 'gray',
+  textDecoration: 'line-through'
+})
+
