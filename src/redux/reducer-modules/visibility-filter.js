@@ -1,4 +1,4 @@
-import { SET_VISIBILITY_FILTER } from './../../actions'
+import { SET_VISIBILITY_FILTER } from './../actions'
 
 const defaultFilters = {
   SHOW_ALL: 'SHOW ALL',

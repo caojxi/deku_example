@@ -2,7 +2,7 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   TOGGLE_TODO
-} from './../../actions'
+} from './../actions'
 
 function todos (state = [], action) {
   switch (action.type) {
