@@ -1,4 +1,8 @@
-import { ADD_TODO, TOGGLE_TODO } from './../../actions'
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO
+} from './../../actions'
 
 function todos (state = [], action) {
   switch (action.type) {
@@ -11,6 +15,11 @@ function todos (state = [], action) {
           completed: false
         }
       ]
+
+    case REMOVE_TODO:
+      return state.filter(todo => {
+        return todo.id !== action.id
+      })
 
     case TOGGLE_TODO:
       return state.map(todo => {

@@ -1,17 +1,21 @@
 import { element } from 'deku'
-import { addTodo, toggleTodo } from 'rd/actions'
-import { css } from 'utils/index'
+import { addTodo, removeTodo, toggleTodo } from 'rd/actions'
+import { inlinecss } from 'utils/index'
 
 export default {
   render ({ dispatch, path, context: { todos, visibilityFilter } }) {
     return (
       <div>
-        <input id={path} type='text' />
-        <button onClick={onAdd(dispatch, path)}>Add Todo</button>
+        <input id={path} type='text' onKeyDown={onEnter(dispatch, path)} />
+        <button>{visibilityFilter}</button>
         <ul>
           {todos.map(todo =>
           <li style={todo.completed ? completed : ''}>
-            <button onClick={onToggle(dispatch, todo.id)}>{!todo.completed ? 'Complete' : 'Uncomplete'}</button> {todo.text}
+            <button onClick={onRemove(dispatch, todo.id)}>X</button>
+            <button onClick={onToggle(dispatch, todo.id)}>
+              {!todo.completed ? 'Complete' : 'Uncomplete'}
+            </button>
+            {todo.text}
           </li>
           )}
         </ul>
@@ -20,13 +24,19 @@ export default {
   }
 }
 
-function onAdd (dispatch, id) {
+function onEnter (dispatch, id) {
   return event => {
     const text = document.getElementById(id).value
 
-    if (text) {
+    if (event.keyCode === 13 && text) {
       dispatch(addTodo(text, `${Date.now()}${Math.random().toString()}`))
     }
+  }
+}
+
+function onRemove (dispatch, id) {
+  return event => {
+    dispatch(removeTodo(id))
   }
 }
 
@@ -36,7 +46,7 @@ function onToggle (dispatch, id) {
   }
 }
 
-const completed = css({
+const completed = inlinecss({
   color: 'gray',
   textDecoration: 'line-through'
 })

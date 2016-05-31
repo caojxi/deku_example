@@ -1,9 +1,8 @@
 import { SET_VISIBILITY_FILTER } from './../../actions'
 
 const defaultFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+  SHOW_ALL: 'SHOW ALL',
+  SHOW_ACTIVE: 'SHOW ACTIVE'
 }
 
 const { SHOW_ALL } = defaultFilters
