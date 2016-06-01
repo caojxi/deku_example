@@ -2,27 +2,7 @@ import { element } from 'deku'
 import { addTodo, removeTodo, toggleTodo } from 'rd/actions'
 import { inlinecss } from 'utils/index'
 
-export default {
-  render ({ dispatch, path, context: { todos, visibilityFilter } }) {
-    return (
-      <div>
-        <input id={path} type='text' onKeyDown={onEnter(dispatch, path)} />
-        <button>{visibilityFilter}</button>
-        <ul>
-          {todos.map(todo =>
-          <li style={todo.completed ? completed : ''}>
-            <button onClick={onRemove(dispatch, todo.id)}>X</button>
-            <button onClick={onToggle(dispatch, todo.id)}>
-              {!todo.completed ? 'Complete' : 'Uncomplete'}
-            </button>
-            {todo.text}
-          </li>
-          )}
-        </ul>
-      </div>
-    )
-  }
-}
+const style = require('assets/ccs/Application.css')
 
 function onEnter (dispatch, id) {
   return event => {
@@ -46,8 +26,25 @@ function onToggle (dispatch, id) {
   }
 }
 
-const completed = inlinecss({
-  color: 'gray',
-  textDecoration: 'line-through'
-})
+export default {
+  render ({ dispatch, path, context: { todos, visibilityFilter } }) {
+    return (
+      <div class={style.app}>
+        <input id={path} type='text' onKeyDown={onEnter(dispatch, path)} />
+        <button>{visibilityFilter}</button>
+        <ul>
+          {todos.map(todo =>
+          <li class={todo.completed ? style.completed : ''}>
+            <button onClick={onRemove(dispatch, todo.id)}>X</button>
+            <button onClick={onToggle(dispatch, todo.id)}>
+              {!todo.completed ? 'Complete' : 'Uncomplete'}
+            </button>
+            {todo.text}
+          </li>
+          )}
+        </ul>
+      </div>
+    )
+  }
+}
 

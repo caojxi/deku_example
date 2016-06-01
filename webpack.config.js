@@ -16,6 +16,7 @@ module.exports = {
       'src': path.resolve(__dirname, './src'),
       'rd': path.resolve(__dirname, './src/redux'),
       'utils': path.resolve(__dirname, './src/utils'),
+      'assets': path.resolve(__dirname, './src/assets'),
       'components': path.resolve(__dirname, './src/components')
     }
   },
@@ -52,7 +53,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: "style-loader!css-loader?modules&camelCase"
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
