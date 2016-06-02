@@ -17,7 +17,7 @@ store.subscribe(() => update(Application, store.getState()))
 export const history = createHistory()
 // subscribe for history change
 history.listen(location => {
-  store.dispatch(routeChange(location.pathname))
+  store.dispatch(routeChange(location.pathname, { params: location.state }))
 })
 
 // first render

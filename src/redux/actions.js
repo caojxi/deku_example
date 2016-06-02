@@ -1,6 +1,8 @@
 // //////////////////////////////
 export const ROUTE_CHANGE = 'ROUTE_CHANGE'
-export function routeChange (path, { params: params = {}, query: query = {}} = {}) { return { type: ROUTE_CHANGE, path, params, query } }
+export function routeChange (path, { params: params = {}, query: query = {}} = {}) {
+  return { type: ROUTE_CHANGE, path, params, query }
+}
 // //////////////////////////////
 
 export const ADD_TODO = 'ADD_TODO'

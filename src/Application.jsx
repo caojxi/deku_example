@@ -20,6 +20,6 @@ function findComponentByPath (path) {
     }
   }
 
-  return null
+  return <div></div>
 }
 

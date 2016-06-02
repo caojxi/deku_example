@@ -10,7 +10,6 @@ export default {
       <div class={style.app}>
         <input id={path} type='text' onKeyDown={onEnter(dispatch, path)} />
         <button>{visibilityFilter}</button>
-        <button onClick={onRouteChange(dispatch, '/item')}>Go to Item</button>
         <ul>
           {todos.map(todo =>
           <li class={todo.completed ? style.completed : ''}>
@@ -19,6 +18,7 @@ export default {
               {!todo.completed ? 'Complete' : 'Uncomplete'}
             </button>
             {todo.text}
+            <button onClick={onRouteChange(dispatch, '/item', { params: { id: todo.id }})}>Go to Item</button>
           </li>
           )}
         </ul>

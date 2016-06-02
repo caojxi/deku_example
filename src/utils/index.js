@@ -1,11 +1,12 @@
 import { routeChange } from 'rd/actions'
 import { history } from './../../index'
 
-export function onRouteChange (dispatch, path) {
+export function onRouteChange (dispatch, path, { params: params = {}, query: query = {}} = {}) {
   return () => {
-    dispatch(routeChange(path))
+    dispatch(routeChange(path, { params, query }))
     history.push({
-      pathname: path
+      pathname: path,
+      state: params
     })
   }
 }
