@@ -1,10 +1,12 @@
 import { createApp, element } from 'deku'
 import store from './src/redux/store'
+import { routeChange } from './src/redux/actions'
+import { createHistory } from 'history'
 import Application from './src/Application.jsx'
 
 const render = createApp(document.getElementById('app'), store.dispatch)
 
-// Rendering function
+// rendering function
 function update (Component, state) {
   render(<Component />, state)
 }
@@ -12,11 +14,16 @@ function update (Component, state) {
 // subscribe store change
 store.subscribe(() => update(Application, store.getState()))
 
-// First render
+export const history = createHistory()
+// subscribe for history change
+history.listen(location => {
+  store.dispatch(routeChange(location.pathname))
+})
+
+// first render
 update(Application, store.getState())
 
-// Hooking into HMR
-// This is the important part as it will reload your code and re-render the app accordingly
+// hooking into HMR
 if (module.hot) {
   module.hot.accept('./src/Application.jsx', function () {
     const nextApplication = require('./src/Application.jsx').default

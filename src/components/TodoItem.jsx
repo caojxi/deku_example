@@ -1,14 +1,11 @@
 import { element } from 'deku'
-import { routeChange } from 'rd/actions'
+import { onRouteChange } from 'utils/index'
 
 export default {
   render ({ dispatch }) {
     return (
-      <button onClick={onRouteChange(dispatch)}>Go to Home</button>
+      <button onClick={onRouteChange(dispatch, '/')}>Go to Home</button>
     )
   }
 }
 
-function onRouteChange (dispatch) {
-  return () => dispatch(routeChange('/'))
-}

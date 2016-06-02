@@ -1,5 +1,6 @@
 import { element } from 'deku'
-import { addTodo, removeTodo, toggleTodo, routeChange } from 'rd/actions'
+import { addTodo, removeTodo, toggleTodo } from 'rd/actions'
+import { onRouteChange } from 'utils/index'
 
 const style = require('assets/ccs/Application.css')
 
@@ -9,7 +10,7 @@ export default {
       <div class={style.app}>
         <input id={path} type='text' onKeyDown={onEnter(dispatch, path)} />
         <button>{visibilityFilter}</button>
-        <button onClick={onRouteChange(dispatch)}>Go to Item</button>
+        <button onClick={onRouteChange(dispatch, '/item')}>Go to Item</button>
         <ul>
           {todos.map(todo =>
           <li class={todo.completed ? style.completed : ''}>
@@ -24,10 +25,6 @@ export default {
       </div>
     )
   }
-}
-
-function onRouteChange (dispatch) {
-  return () => dispatch(routeChange('/item'))
 }
 
 function onEnter (dispatch, id) {

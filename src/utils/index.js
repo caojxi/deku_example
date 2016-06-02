@@ -1,13 +1,11 @@
-function camelCaseToDash (myStr) {
-  return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-}
+import { routeChange } from 'rd/actions'
+import { history } from './../../index'
 
-export function inlinecss (styles) {
-  let result = ''
-
-  for (const style in styles) {
-    result += `${camelCaseToDash(style)}:${styles[style]};`
+export function onRouteChange (dispatch, path) {
+  return () => {
+    dispatch(routeChange(path))
+    history.push({
+      pathname: path
+    })
   }
-
-  return result
 }
