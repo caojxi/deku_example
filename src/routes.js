@@ -1,5 +1,6 @@
 const routes = [
-  { path: '/', component: require('./Todo').default }
+  { path: '/', component: require('./components/Todo').default },
+  { path: '/item', component: require('./components/TodoItem').default }
 ]
 
 export default routes

@@ -1,30 +1,7 @@
 import { element } from 'deku'
-import { addTodo, removeTodo, toggleTodo } from 'rd/actions'
-import { inlinecss } from 'utils/index'
+import { addTodo, removeTodo, toggleTodo, routeChange } from 'rd/actions'
 
 const style = require('assets/ccs/Application.css')
-
-function onEnter (dispatch, id) {
-  return event => {
-    const text = document.getElementById(id).value
-
-    if (event.keyCode === 13 && text) {
-      dispatch(addTodo(text, `${Date.now()}${Math.random().toString()}`))
-    }
-  }
-}
-
-function onRemove (dispatch, id) {
-  return event => {
-    dispatch(removeTodo(id))
-  }
-}
-
-function onToggle (dispatch, id) {
-  return event => {
-    dispatch(toggleTodo(id))
-  }
-}
 
 export default {
   render ({ dispatch, path, context: { todos, visibilityFilter } }) {
@@ -32,6 +9,7 @@ export default {
       <div class={style.app}>
         <input id={path} type='text' onKeyDown={onEnter(dispatch, path)} />
         <button>{visibilityFilter}</button>
+        <button onClick={onRouteChange(dispatch)}>Go to Item</button>
         <ul>
           {todos.map(todo =>
           <li class={todo.completed ? style.completed : ''}>
@@ -46,5 +24,27 @@ export default {
       </div>
     )
   }
+}
+
+function onRouteChange (dispatch) {
+  return () => dispatch(routeChange('/item'))
+}
+
+function onEnter (dispatch, id) {
+  return event => {
+    const text = document.getElementById(id).value
+
+    if (event.keyCode === 13 && text) {
+      dispatch(addTodo(text, `${Date.now()}${Math.random().toString()}`))
+    }
+  }
+}
+
+function onRemove (dispatch, id) {
+  return () => dispatch(removeTodo(id))
+}
+
+function onToggle (dispatch, id) {
+  return () => dispatch(toggleTodo(id))
 }
 
